@@ -13,6 +13,15 @@ class RecordService
 
   def get_artist_graph_data(params)
     records = Record.where(artist: params[:artist]).group(:year).count
-    Gchart.bar(:data => records.values, :axis_with_labels => ['x', 'y'], :size => '300x200', :axis_labels => [records.keys], :axis_range => [[0,0],[0,records.values.max,1]])
+    _get_graph(records, 'bar')
+  end
+
+  private
+  def _get_graph(data, type)
+    if type == 'bar'
+      Gchart.bar(data: data.values, axis_with_labels: %w[x y],
+                 size: '300x200', axis_labels: [data.keys],
+                 axis_range: [[0, 0], [0, data.values.max, 1]])
+    end
   end
 end
