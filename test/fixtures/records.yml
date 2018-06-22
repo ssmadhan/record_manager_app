@@ -1,13 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  title: 
-  artist: 
-  year: 
-  condition: 
+  title: 'test1'
+  artist: 'artist1'
+  year: 1990
+  condition: 'Excellent'
 
 two:
-  title: 
-  artist: 
-  year: 
-  condition: 
+  title: 'test2'
+  artist: 'artist2'
+  year: 2005
+  condition: 'Fair'

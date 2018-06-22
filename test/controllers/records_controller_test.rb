@@ -46,4 +46,9 @@ class RecordsControllerTest < ActionController::TestCase
 
     assert_redirected_to records_path
   end
+
+  test "should get artist graph" do
+    get :artist_graph_data, artist: @record.artist
+    assert_response :success
+  end
 end
