@@ -1,7 +1,0 @@
-I"j(function() {
-  jQuery(function() {
-    return $("#records-list").dataTable();
-  });
-
-}).call(this);
-:ET

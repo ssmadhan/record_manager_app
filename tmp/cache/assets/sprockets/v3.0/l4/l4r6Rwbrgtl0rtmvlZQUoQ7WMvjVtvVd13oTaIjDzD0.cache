@@ -1,1 +1,0 @@
-I"Nfunction(obj){var __p=[],print=function(){__p.push.apply(__p,arguments);};with(obj||{}){__p.push('<td>',  title ,'</td>\n<td>',  artist ,'</td>\n<td>',  year ,'</td>\n<td>',  condition ,'</td>\n<td><a href="#">',  I18n.t('labels.edit') ,'</a>|<a class="delete-record">',  I18n.t('labels.delete') ,'</a></td>\n');}return __p.join('');}:ET
