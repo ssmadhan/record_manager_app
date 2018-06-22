@@ -1,0 +1,7 @@
+I"k(function() {
+  jQuery(function() {
+    return $("#product_lists").dataTable();
+  });
+
+}).call(this);
+:ET

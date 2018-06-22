@@ -1,0 +1,13 @@
+<td><span class="record-item-display" id="record-title-display-<%= id %>"><%= title %></span><input type="hidden" id="record-title-edit-<%= id %>" class="record-edit"></input></td>
+<td><a class="artist-record"><span class="record-item-display" id="record-artist-display-<%= id %>"><%= artist %></span></a><input type="hidden" id="record-artist-edit-<%= id %>" class="record-edit"></input></td>
+<td><span class="record-item-display" id="record-year-display-<%= id %>"><%= year %></span><input type="hidden" id="record-year-edit-<%= id %>" class="record-edit"></input></td>
+<td>
+    <span class="record-item-display" id="record-condition-display-<%= id %>"><%= condition %></span>
+    <select id="record-condition-edit-<%= id %>" class="record-edit-condition-hide">
+        <option selected><%= I18n.t('record_condition.excellent') %></option>
+        <option><%= I18n.t('record_condition.fair') %></option>
+        <option><%= I18n.t('record_condition.poor') %></option>
+        <option><%= I18n.t('record_condition.broken') %></option>
+    </select>
+</td>
+<td><a><span class="edit-record" id="edit-record-<%= id %>"><%= I18n.t('labels.edit') %></span></a> |<a class="delete-record"><%= I18n.t('labels.delete') %></a></td>

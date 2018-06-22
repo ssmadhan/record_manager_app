@@ -1,0 +1,41 @@
+I"R(function() {
+  RecordManagerApp.Views.RecordItemView = Backbone.View.extend({
+    template: JST["backbone/templates/record_item"],
+    tagName: 'tr',
+    initialize: function() {
+      console.log("init");
+      return this.listenTo(this.model, 'destroy', this.remove);
+    },
+    events: {
+      'click .todo-item-done': 'updateTask'
+    },
+    render: function() {
+      this.$el.html(this.template({
+        title: this.model.get('title'),
+        artist: this.model.get('artist')
+      }, {
+        year: this.model.get('year'),
+        condition: this.model.get('condition'),
+        id: this.model.get('id')
+      }));
+      return this;
+    },
+    updateTask: function(e) {
+      var fieldId;
+      fieldId = e.target.getAttribute('id');
+      if ($("#" + fieldId).is(':checked')) {
+        this.model.save({
+          status: 'complete'
+        });
+        return this.$(".todo-item-display").addClass('complete');
+      } else {
+        this.model.save({
+          status: 'new'
+        });
+        return this.$(".todo-item-display").removeClass('complete');
+      }
+    }
+  });
+
+}).call(this);
+:ET

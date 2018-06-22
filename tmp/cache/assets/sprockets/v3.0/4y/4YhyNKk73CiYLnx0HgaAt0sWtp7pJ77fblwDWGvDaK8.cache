@@ -1,0 +1,49 @@
+I"w(function() {
+  RecordManagerApp.Views.RecordItemView = Backbone.View.extend({
+    template: JST["backbone/templates/record_item"],
+    tagName: 'tr',
+    initialize: function() {
+      return this.listenTo(this.model, 'destroy', this.remove);
+    },
+    events: {
+      'click .delete-record': 'deleteRecord',
+      'click .edit-record': 'editRecord'
+    },
+    render: function() {
+      this.$el.html(this.template({
+        title: this.model.get('title'),
+        artist: this.model.get('artist'),
+        year: this.model.get('year'),
+        condition: this.model.get('condition'),
+        id: this.model.get('id')
+      }));
+      this.$('#record-edit-condition').hide();
+      return this;
+    },
+    updateTask: function(e) {
+      var fieldId;
+      fieldId = e.target.getAttribute('id');
+      if ($("#" + fieldId).is(':checked')) {
+        this.model.save({
+          status: 'complete'
+        });
+        return this.$(".todo-item-display").addClass('complete');
+      } else {
+        this.model.save({
+          status: 'new'
+        });
+        return this.$(".todo-item-display").removeClass('complete');
+      }
+    },
+    deleteRecord: function() {
+      return this.model.destroy();
+    },
+    editRecord: function() {
+      $('.edit-record').html('Save');
+      $('.record-item-display').hide();
+      return $('.record-edit').attr('type', 'text');
+    }
+  });
+
+}).call(this);
+:ET

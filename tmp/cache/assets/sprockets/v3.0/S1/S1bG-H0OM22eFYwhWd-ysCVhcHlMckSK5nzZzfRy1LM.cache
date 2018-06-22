@@ -1,0 +1,15 @@
+I"•(function() {
+  RecordManagerApp.Routers.RecordManagerAppRouter = Backbone.Router.extend({
+    routes: {
+      "home": "displayMainAppContent"
+    },
+    initialize: function() {},
+    displayMainAppContent: function() {
+      var view;
+      view = new RecordManagerAppapp.Views.RecordManagerAppView();
+      return $('#record-manager-main-container').html(view.render().el);
+    }
+  });
+
+}).call(this);
+:ET

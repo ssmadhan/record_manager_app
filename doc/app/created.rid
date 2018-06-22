@@ -1,0 +1,10 @@
+Fri, 22 Jun 2018 05:41:57 -0700
+README.rdoc	Fri, 22 Jun 2018 05:41:53 -0700
+app/controllers/application_controller.rb	Wed, 20 Jun 2018 11:14:48 -0700
+app/controllers/home_controller.rb	Wed, 20 Jun 2018 13:02:59 -0700
+app/controllers/records_controller.rb	Thu, 21 Jun 2018 17:42:42 -0700
+app/helpers/application_helper.rb	Wed, 20 Jun 2018 11:14:48 -0700
+app/helpers/home_helper.rb	Wed, 20 Jun 2018 13:02:59 -0700
+app/helpers/records_helper.rb	Wed, 20 Jun 2018 11:33:30 -0700
+app/models/record.rb	Thu, 21 Jun 2018 13:34:55 -0700
+app/services/record_service.rb	Fri, 22 Jun 2018 05:28:29 -0700

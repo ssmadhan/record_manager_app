@@ -1,0 +1,20 @@
+== README
+
+This README would normally document whatever steps are necessary to get the
+application up and running.
+
+Things you may want to cover:
+
+* Ruby version
+    Please download and install Ruby version 2.2.5 and Rails version 4.2.10
+
+* Configuration
+    Run 'bundle install' to install all gems being used
+    The default sqlite3 is used with this app. If you wish the change that please include the appropriate driver gem in Gemfile and change
+    the database configuration in config/database.yml accordingly.
+
+* Database initialization
+    Run 'rake db:migrate'
+
+* Running and usage instructions
+    Runs 'rails s -p <port_number>' to start the rails server. Navigate to http://localhost:<port_number> on your browser

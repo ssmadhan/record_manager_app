@@ -1,0 +1,79 @@
+I"%(function() {
+  RecordManagerApp.Views.RecordItemView = Backbone.View.extend({
+    template: JST["backbone/templates/record_item"],
+    tagName: 'tr',
+    initialize: function() {
+      return this.listenTo(this.model, 'destroy', this.remove);
+    },
+    events: {
+      'click .delete-record': 'deleteRecord',
+      'click .edit-record': 'editRecord',
+      'click .save-record': 'saveRecord'
+    },
+    render: function() {
+      this.$el.html(this.template({
+        title: this.model.get('title'),
+        artist: this.model.get('artist'),
+        year: this.model.get('year'),
+        condition: this.model.get('condition'),
+        id: this.model.get('id')
+      }));
+      return this;
+    },
+    updateTask: function(e) {
+      var fieldId;
+      fieldId = e.target.getAttribute('id');
+      if ($("#" + fieldId).is(':checked')) {
+        this.model.save({
+          status: 'complete'
+        });
+        return this.$(".todo-item-display").addClass('complete');
+      } else {
+        this.model.save({
+          status: 'new'
+        });
+        return this.$(".todo-item-display").removeClass('complete');
+      }
+    },
+    deleteRecord: function() {
+      return this.model.destroy();
+    },
+    editRecord: function() {
+      this.$('#edit-record-' + this.model.get('id')).html('Save');
+      this.$('#edit-record-' + this.model.get('id')).addClass('save-record');
+      this.$('#edit-record-' + this.model.get('id')).removeClass('edit-record');
+      $('.record-item-display').hide();
+      this.$('#record-condition-edit' + this.model.get('id')).removeClass('record-edit-condition-hide');
+      $('.record-edit').attr('type', 'text');
+      this.$("#record-title-edit-" + this.model.get('id')).val(this.model.get('title'));
+      this.$("#record-artist-edit-" + this.model.get('id')).val(this.model.get('artist'));
+      this.$("#record-year-edit-" + this.model.get('id')).val(this.model.get('year'));
+      return this.$("#record-condition-edit-" + this.model.get('id')).val(this.model.get('condition'));
+    },
+    saveRecord: function() {
+      var artist, condition, title, year;
+      title = this.$("#record-title-edit-" + this.model.get('id')).val();
+      artist = this.$("#record-artist-edit-" + this.model.get('id')).val();
+      year = this.$("#record-year-edit-" + this.model.get('id')).val();
+      condition = this.$("#record-condition-edit-" + this.model.get('id')).val();
+      this.model.save({
+        title: title,
+        artist: artist,
+        year: year,
+        condition: condition
+      });
+      this.$('#edit-record-' + this.model.get('id')).html('Edit');
+      this.$('#edit-record-' + this.model.get('id')).removeClass('save-record');
+      this.$('#edit-record-' + this.model.get('id')).addClass('edit-record');
+      $('.record-edit').attr('type', 'hidden');
+      this.$('#record-condition-edit' + this.model.get('id')).addClass('record-edit-condition-hide');
+      $('.record-item-display').show();
+      this.$("#record-title-display-" + this.model.get('id')).html(this.model.get('title'));
+      this.$("#record-artist-display-" + this.model.get('id')).html(this.model.get('artist'));
+      this.$("#record-year-display-" + this.model.get('id')).html(this.model.get('year'));
+      return this.$("#record-condition-display-" + this.model.get('id')).html(this.model.get('condition'));
+    }
+  });
+
+}).call(this);
+:ET

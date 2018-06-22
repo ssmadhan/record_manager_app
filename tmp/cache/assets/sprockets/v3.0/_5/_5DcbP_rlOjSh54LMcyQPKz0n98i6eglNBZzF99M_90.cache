@@ -1,0 +1,75 @@
+I"n	(function() {
+  RecordManagerApp.Views.RecordManagerAppView = Backbone.View.extend({
+    template: JST["backbone/templates/record_manager_app_main"],
+    initialize: function() {
+      _.bindAll(this, 'fetchRecords');
+      this.record_collection = new RecordManagerApp.Collections.RecordCollection();
+      this.sort_by = "title:ASC";
+      return this.listenTo(this.record_collection, 'add', this.addOne);
+    },
+    events: {
+      'click #add-new-record': 'addNewRecord',
+      'click #create-new-record': 'createNewRecord',
+      'click .sortable-column': 'setSortOrderAndFetch'
+    },
+    render: function() {
+      this.$el.html(this.template());
+      this.fetchRecords();
+      return this;
+    },
+    setSortOrderAndFetch: function(e) {
+      var current_sort_field, current_sort_order, fieldId;
+      fieldId = e.target.getAttribute("id");
+      current_sort_field = this.sort_by.split(':')[0];
+      current_sort_order = this.sort_by.split(':')[1];
+      if (fieldId === current_sort_field) {
+        if (current_sort_order === 'ASC') {
+          this.sort_by = fieldId + ':DESC';
+        } else {
+          this.sort_by = fieldId + ':ASC';
+        }
+      } else {
+        this.sort_by = fieldId + ':ASC';
+      }
+      return this.fetchRecords();
+    },
+    fetchRecords: function() {
+      this.record_collection.reset();
+      this.$("#records-table-body").empty();
+      return this.record_collection.fetch({
+        data: {
+          sort_by: this.sort_by
+        }
+      });
+    },
+    addNewRecord: function() {
+      this.$('#record-success-alert').hide();
+      return this.$('#add-new-record-modal').modal('show');
+    },
+    addOne: function(record) {
+      var view;
+      this.$('#new-record-form')[0].reset();
+      this.$('#record-success-alert').show();
+      console.log("here");
+      view = new RecordManagerApp.Views.RecordItemView({
+        model: record
+      });
+      return this.$("#records-table-body").append(view.render().el);
+    },
+    createNewRecord: function() {
+      var artist, condition, title, year;
+      title = this.$('#album-title').val();
+      artist = this.$('#artist-name').val();
+      year = this.$('#record-year').val();
+      condition = this.$('#record-condition').val();
+      return this.record_collection.create({
+        title: title,
+        artist: artist,
+        year: year,
+        condition: condition
+      });
+    }
+  });
+
+}).call(this);
+:ET

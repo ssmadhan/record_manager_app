@@ -1,0 +1,72 @@
+I"(function() {
+  RecordManagerApp.Views.RecordManagerAppView = Backbone.View.extend({
+    template: JST["backbone/templates/record_manager_app_main"],
+    initialize: function() {
+      _.bindAll(this, 'fetchRecords');
+      this.record_collection = new RecordManagerApp.Collections.RecordCollection();
+      this.limit = 20;
+      this.offset = 0;
+      return this.listenTo(this.record_collection, 'add', this.addOne);
+    },
+    events: {
+      'keypress #todo-text-entry': 'createNewTodo'
+    },
+    render: function() {
+      console.log("here");
+      this.$el.html(this.template());
+      this.fetchRecords();
+      this.$('#record-display').bind('scroll', this.fetchRecords);
+      return this;
+    },
+    fetchRecords: function(e) {
+      var fieldId;
+      if (e == null) {
+        e = null;
+      }
+      fieldId = null;
+      if (e !== null) {
+        fieldId = e.target.getAttribute('id');
+      }
+      if (fieldId !== null) {
+        if (this.offset === 0 || $('#' + fieldId).scrollTop() + $('#' + fieldId).innerHeight() >= $('#' + fieldId)[0].scrollHeight) {
+          this.record_collection.fetch({
+            data: {
+              limit: this.limit,
+              offset: this.offset
+            }
+          });
+          this.offset = this.offset + 10;
+          return console.log("in fetch");
+        }
+      } else {
+        this.record_collection.fetch({
+          data: {
+            limit: this.limit,
+            offset: this.offset
+          }
+        });
+        this.offset = this.offset + 10;
+        return console.log("in fetch");
+      }
+    },
+    addOne: function(record) {
+      var view;
+      view = new RecordManagerAppapp.Views.RecordItemView({
+        model: record
+      });
+      return this.$("#records-table-body").append(view.render().el);
+    },
+    createNewRecord: function(e) {
+      var todo;
+      if (e.which === 13) {
+        todo = this.$('#todo-text-entry').val();
+        return this.record_collection.create({
+          name: record,
+          status: 'new'
+        });
+      }
+    }
+  });
+
+}).call(this);
+:ET

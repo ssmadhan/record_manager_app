@@ -1,0 +1,19 @@
+I"ˆ(function() {
+  RecordManagerApp.Models.RecordModel = Backbone.Model.extend({
+    defaults: function() {
+      return {
+        title: '',
+        artist: '',
+        year: 1970,
+        condition: ''
+      };
+    }
+  });
+
+  RecordManagerApp.Collections.RecordCollection = Backbone.Collection.extend({
+    url: '/records',
+    model: RecordManagerApp.Models.RecordModel
+  });
+
+}).call(this);
+:ET

@@ -1,0 +1,89 @@
+<div id="main-record-manager-content">
+    <section id="header-tools">
+      <button class="btn btn-primary" id="add-new-record"><%= I18n.t('labels.add_record') %></button>
+    </section>
+
+    <section id="records-table">
+        <table id="records-list" class="table table-striped">
+            <thead>
+                <tr>
+                    <th><%= I18n.t('title') %> <a><span class="glyphicon glyphicon-sort sortable-column" id="title"></span></a></th>
+                    <th><%= I18n.t('artist') %> <a class="sortable-column sortable-column"><span class="glyphicon glyphicon-sort" id="artist"></span></a></th>
+                    <th><%= I18n.t('year') %> <a class="sortable-column sortable-column"><span class="glyphicon glyphicon-sort" id="year"></span></a></th>
+                    <th><%= I18n.t('condition') %> <a class="sortable-column sortable-column"><span class="glyphicon glyphicon-sort" id="condition"></span></a></th>
+                    <th><%= I18n.t('actions') %></th>
+                </tr>
+            </thead>
+            <tbody id="records-table-body"></tbody>
+        </table>
+    </section>
+    <section id="footer-tools"></section>
+
+    <div class="modal fade" id="add-new-record-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title"><%= I18n.t('add_new_record') %></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form id="new-record-form">
+              <div class="form-group">
+                <label for="album-title"><%= I18n.t('title') %></label>
+                <input type="text" class="form-control" id="album-title" placeholder="Enter album title" required>
+              </div>
+              <div class="form-group">
+                <label for="artist-name"><%= I18n.t('artist') %></label>
+                <input type="text" class="form-control" id="artist-name" placeholder="Enter artist name" required>
+              </div>
+              <div class="form-group">
+                <label for="record-year"><%= I18n.t('year') %></label>
+                <input type="number" class="form-control" id="record-year" placeholder="Enter the year" required>
+              </div>
+              <div class="form-group">
+                <label for="record-condition"><%= I18n.t('condition') %></label>
+                <select id="record-condition" class="form-control">
+                    <option selected><%= I18n.t('record_condition.excellent') %></option>
+                    <option><%= I18n.t('record_condition.fair') %></option>
+                    <option><%= I18n.t('record_condition.poor') %></option>
+                    <option><%= I18n.t('record_condition.broken') %></option>
+                </select>
+              </div>
+              <button type="submit" id="create-new-record" class="btn btn-primary"><%= I18n.t('labels.submit') %></button>
+            </form>
+            <br />
+            <div id="record-success-alert" class="alert alert-success" role="alert">
+              Your record was added successfully!
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal"><%= I18n.t('labels.close') %></button>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+<div class="modal fade" id="display-artist-graph-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title"><%= I18n.t('artist_graph_title') %> <span id="artist-graph-modal-title"></span></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <img id="artist-graph-img"></img>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal"><%= I18n.t('labels.close') %></button>
+          </div>
+        </div>
+    </div>
+</div>
