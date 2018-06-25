@@ -1,0 +1,32 @@
+{
+  "name": "ls",
+  "version": "1.0.0",
+  "description": "record manager app",
+  "main": "index.js",
+  "directories": {
+    "doc": "doc",
+    "lib": "lib",
+    "test": "test"
+  },
+  "dependencies": {
+    "phantomjs": "^2.1.7",
+    "phantomjs-prebuilt": "^2.1.16",
+    "sinon": "^6.0.1"
+  },
+  "devDependencies": {
+    "jasmine-sinon": "^0.4.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ssmadhan/record_manager_app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ssmadhan/record_manager_app/issues"
+  },
+  "homepage": "https://github.com/ssmadhan/record_manager_app#readme"
+}

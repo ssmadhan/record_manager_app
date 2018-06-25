@@ -5,6 +5,7 @@ RecordManagerApp.Views.RecordManagerAppView = Backbone.View.extend
   initialize: ->
     _.bindAll(this, 'fetchRecords')
     @record_collection = new RecordManagerApp.Collections.RecordCollection()
+    @no_records_view = new RecordManagerApp.Views.NoRecordsView()
     @sort_by = "title:ASC"
     this.listenTo(@record_collection, 'add', this.addOne)
 
@@ -35,13 +36,21 @@ RecordManagerApp.Views.RecordManagerAppView = Backbone.View.extend
   fetchRecords: () ->
     @record_collection.reset()
     @$("#records-table-body").empty()
-    @record_collection.fetch({data: {sort_by: @sort_by}})
+    thisView = this
+    @record_collection.fetch(
+      data: {sort_by: @sort_by}
+      success: (data) ->
+        if data.length == 0
+          console.log("no records")
+          $("#records-table-body").append(thisView.no_records_view.render().el)
+    )
 
   addNewRecord: ->
     @$('#record-success-alert').hide()
     @$('#add-new-record-modal').modal('show')
 
   addOne: (record) ->
+    @no_records_view.remove()
     @$('#new-record-form')[0].reset()
     @$('#record-success-alert').show()
     view = new RecordManagerApp.Views.RecordItemView(model: record)

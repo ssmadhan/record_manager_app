@@ -20,4 +20,6 @@
 //= require backbone_datalink
 //= require backbone/record_manager_app
 //= require i18n/translations
+//= require sinon
+//= require jasmine-sinon
 //= require_tree .

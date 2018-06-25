@@ -40,6 +40,11 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  gem 'jasmine'
+  gem 'jasminerice', :git => 'https://github.com/bradphelan/jasminerice.git'
+  gem 'guard'
+  gem 'guard-jasmine'
+  gem 'sinon-rails'
 end
 
 group :development do
