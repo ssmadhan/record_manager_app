@@ -4,18 +4,20 @@
     </section>
 
     <section id="records-table">
-        <table id="records-list" class="table table-striped header-fixed">
-            <thead>
-                <tr>
-                    <th><%= I18n.t('title') %> <a><span class="glyphicon glyphicon-sort sortable-column" id="title"></span></a></th>
-                    <th><%= I18n.t('artist') %> <a class="sortable-column sortable-column"><span class="glyphicon glyphicon-sort" id="artist"></span></a></th>
-                    <th><%= I18n.t('year') %> <a class="sortable-column sortable-column"><span class="glyphicon glyphicon-sort" id="year"></span></a></th>
-                    <th><%= I18n.t('condition') %> <a class="sortable-column sortable-column"><span class="glyphicon glyphicon-sort" id="condition"></span></a></th>
-                    <th><%= I18n.t('actions') %></th>
-                </tr>
-            </thead>
-            <tbody id="records-table-body"></tbody>
-        </table>
+        <div id="records-table-div">
+            <table id="records-list" class="table table-striped header-fixed">
+                <thead>
+                    <tr>
+                        <th><%= I18n.t('title') %> <a><span class="glyphicon glyphicon-sort sortable-column" id="title"></span></a></th>
+                        <th><%= I18n.t('artist') %> <a class="sortable-column sortable-column"><span class="glyphicon glyphicon-sort" id="artist"></span></a></th>
+                        <th><%= I18n.t('year') %> <a class="sortable-column sortable-column"><span class="glyphicon glyphicon-sort" id="year"></span></a></th>
+                        <th><%= I18n.t('condition') %> <a class="sortable-column sortable-column"><span class="glyphicon glyphicon-sort" id="condition"></span></a></th>
+                        <th><%= I18n.t('actions') %></th>
+                    </tr>
+                </thead>
+                <tbody id="records-table-body"></tbody>
+            </table>
+         </div>
     </section>
     <section id="footer-tools"></section>
 

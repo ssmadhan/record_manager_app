@@ -37,3 +37,8 @@ a {
 .no-records {
   margin-left: 150px;
 }
+
+#records-table-div {
+  height: 300px;
+  overflow-y: scroll;
+}
