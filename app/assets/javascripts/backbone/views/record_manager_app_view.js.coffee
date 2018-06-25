@@ -47,18 +47,43 @@ RecordManagerApp.Views.RecordManagerAppView = Backbone.View.extend
 
   addNewRecord: ->
     @$('#record-success-alert').hide()
+    @$('#record-error-alert').hide()
     @$('#add-new-record-modal').modal('show')
 
   addOne: (record) ->
-    @no_records_view.remove()
-    @$('#new-record-form')[0].reset()
-    @$('#record-success-alert').show()
-    view = new RecordManagerApp.Views.RecordItemView(model: record)
-    @$("#records-table-body").append(view.render().el)
+    if record.get('id')
+      @no_records_view.remove()
+      @$('#new-record-form')[0].reset()
+      view = new RecordManagerApp.Views.RecordItemView(model: record)
+      @$("#records-table-body").append(view.render().el)
 
   createNewRecord: ->
     title = @$('#album-title').val()
     artist = @$('#artist-name').val()
     year = @$('#record-year').val()
     condition = @$('#record-condition').val()
-    @record_collection.create({title: title, artist: artist, year: year, condition: condition})
+    @record_collection.create(
+      {title: title, artist: artist, year: year, condition: condition},
+      {
+        success: ->
+          @$('#record-success-alert').show()
+          @$('#record-error-alert').hide()
+        error: (status, response) ->
+          @$('#record-success-alert').hide()
+          @$('#record-error-alert').show()
+          response_json = JSON.parse(response.responseText)
+          error_string = ''
+          for key,value of response_json
+            error_string = key + ' '
+            error_messages = value
+            first = true
+            for emsg in error_messages
+              if not first
+                error_string = error_string + ' ,'
+              error_string = error_string + emsg
+              first = false
+            $('#record-error-msg').append(error_string)
+      }
+
+
+    )
