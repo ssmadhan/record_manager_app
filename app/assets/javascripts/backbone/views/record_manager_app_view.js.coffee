@@ -8,6 +8,7 @@ RecordManagerApp.Views.RecordManagerAppView = Backbone.View.extend
     @no_records_view = new RecordManagerApp.Views.NoRecordsView()
     @sort_by = "title:ASC"
     this.listenTo(@record_collection, 'add', this.addOne)
+    this.listenTo(@record_collection, 'change', this.addOne)
 
   events:
     'click #add-new-record' : 'addNewRecord'
@@ -41,7 +42,6 @@ RecordManagerApp.Views.RecordManagerAppView = Backbone.View.extend
       data: {sort_by: @sort_by}
       success: (data) ->
         if data.length == 0
-          console.log("no records")
           $("#records-table-body").append(thisView.no_records_view.render().el)
     )
 
@@ -84,6 +84,4 @@ RecordManagerApp.Views.RecordManagerAppView = Backbone.View.extend
               first = false
             $('#record-error-msg').append(error_string)
       }
-
-
     )
